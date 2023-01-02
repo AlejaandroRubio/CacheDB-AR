@@ -1,3 +1,5 @@
+import exceptions.DuplicatedKeyException;
+import exceptions.KeyNotFoundException;
 
 public interface ICache {
     /**
@@ -39,13 +41,13 @@ public interface ICache {
      * @param value Value to be stored.
      * @throws DuplicatedKeyException the key already exists.
      */
-    void addNew(String key, String value);
+    void addNew(String key, String value) throws DuplicatedKeyException;
     /**
      * Remove a key and its value.
      * @param key Key to be stored.
      * @throws KeyNotFoundException if key does not exist.
      */
-    void remove(String key);
+    void remove(String key) throws KeyNotFoundException;
     /**
      * Count the keys (and values) stored in cache.
      * @return Count of keys.

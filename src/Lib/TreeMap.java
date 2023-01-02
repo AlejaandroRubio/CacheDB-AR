@@ -45,8 +45,6 @@ public class TreeMap {
         MapEntry newEntry = new MapEntry(key, value);
         tree.insert(newEntry);
 
-
-
     }
 
     public String get(String key) throws KeyNotFoundException {
@@ -57,6 +55,12 @@ public class TreeMap {
         return entry.getValue();
         }
 
+
+    public void remove(String key) {
+        MapEntry entry = new MapEntry(key, null);
+        tree.remove(entry);
+    }
+}
 
     //endregion
 
@@ -87,4 +91,4 @@ public class TreeMap {
         //endregion
 
     }
-}
+

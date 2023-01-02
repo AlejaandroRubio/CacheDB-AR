@@ -1,14 +1,11 @@
 import Lib.*;
-import exceptions.KeyNotFoundException;
+import exceptions.*;
+
 
 public class CacheDB implements ICache{
 
     private TreeMap cache;
-
-    /**
-     * Get all keys stored in cache.
-     * @return array of stored keys
-     */
+    
     @Override
     public String[] getAll() {
         return cache.keys();
@@ -50,18 +47,32 @@ public class CacheDB implements ICache{
     }
 
     @Override
-    public void addNew(String key, String value) {
-        
+    public void addNew(String key, String value) throws DuplicatedKeyException {
+
+        if (exists(key)) {
+            throw new DuplicatedKeyException();
+        } else {
+            cache.put(key, value);
+        }
 
     }
 
     @Override
-    public void remove(String key) {
+    public void remove(String key) throws KeyNotFoundException {
+        if (!exists(key)) {
+            throw new KeyNotFoundException();
+        } else {
+            cache.remove(key);
 
+        }
     }
 
     @Override
     public int size() {
-        return 0;
+        return cache.size();
     }
+
+
 }
+
+
