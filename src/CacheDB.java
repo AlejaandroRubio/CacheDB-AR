@@ -4,13 +4,15 @@ import exceptions.*;
 
 public class CacheDB implements ICache{
 
-    private TreeMap cache;
-    
+    private TreeMap cache = new TreeMap();
+
     @Override
     public String[] getAll() {
         return cache.keys();
     }
 
+
+    //region Get & GetOrDefault
     @Override
     public String get(String key) {
         try {
@@ -28,7 +30,9 @@ public class CacheDB implements ICache{
             return defaultValue;
         }
     }
+    //endregion
 
+    //region Exists
     @Override
     public boolean exists(String key) {
 
@@ -39,7 +43,9 @@ public class CacheDB implements ICache{
             return false;
         }
     }
+    //endregion
 
+    //region Put & AddNew
     @Override
     public void put(String key, String value) {
         cache.put(key, value);
@@ -56,7 +62,9 @@ public class CacheDB implements ICache{
         }
 
     }
+    //endregion
 
+    //region Remove
     @Override
     public void remove(String key) throws KeyNotFoundException {
         if (!exists(key)) {
@@ -66,6 +74,7 @@ public class CacheDB implements ICache{
 
         }
     }
+    //endregion
 
     @Override
     public int size() {

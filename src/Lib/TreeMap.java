@@ -48,47 +48,21 @@ public class TreeMap {
     }
 
     public String get(String key) throws KeyNotFoundException {
-        MapEntry entry = new MapEntry(key, null);
+        TreeNode<MapEntry> entry = tree.search(new MapEntry(key, null));
         if (entry == null) {
             throw new KeyNotFoundException();
         };
-        return entry.getValue();
+        return entry.getData().getValue();
         }
 
+    //endregion
 
+    //region Remove
     public void remove(String key) {
         MapEntry entry = new MapEntry(key, null);
         tree.remove(entry);
     }
-}
 
     //endregion
-
-    //region MapEntry
-    class MapEntry implements Comparable<MapEntry> {
-
-        private final String key;
-        private final String value;
-
-        public MapEntry(String key, String value) {
-            this.key = key;
-            this.value = value;
-        }
-
-        public String getKey() {
-            return key;
-        }
-
-        public String getValue() {
-            return value;
-        }
-
-        @Override
-        public int compareTo(MapEntry other) {
-            return this.key.compareTo(other.key);
-        }
-
-        //endregion
-
-    }
+}
 
