@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="CacheDB-AlejandroRubio:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/CacheDB_AlejandroRubio_jar</output-path>
+    <root id="archive" name="CacheDB-AlejandroRubio.jar">
+      <element id="module-output" name="CacheDB-AlejandroRubio" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../Downloads/picocli-4.7.0.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>

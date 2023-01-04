@@ -1,6 +1,10 @@
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import exceptions.*;
+
+import edai.Cache.CacheDB;
+import edai.Cache.exceptions.DuplicatedKeyException;
+import edai.Cache.exceptions.KeyNotFoundException;
+import edai.Cache.exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

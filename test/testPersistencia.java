@@ -1,27 +1,15 @@
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-import Lib.MapEntry;
-import Lib.TreeMap;
-import cache.cache;
-import exceptions.*;
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
+import edai.Cache.cache.cache;
+import edai.Cache.exceptions.KeyNotFoundException;
+import edai.Cache.exceptions.*;
 import org.junit.jupiter.api.Test;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
 public class testPersistencia {
 
-    @BeforeEach
-
-    void setUp() {
-        for (File file : new File("./src/cache/data/").listFiles()) {
-            file.delete();
-        }
-    }
 
    @Test
 
@@ -63,6 +51,4 @@ public class testPersistencia {
 
 
     }
-
-
 }
