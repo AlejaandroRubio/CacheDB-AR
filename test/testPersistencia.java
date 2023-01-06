@@ -4,11 +4,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edai.Cache.cache.cache;
 import edai.Cache.exceptions.KeyNotFoundException;
 import edai.Cache.exceptions.*;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class testPersistencia {
+
 
 
    @Test
@@ -47,8 +51,17 @@ public class testPersistencia {
         cache.saveData( "1", "value1");
         String hash = String.format("%o", "1".hashCode());
         assertEquals("1", cache.getKey(hash));
+    }
 
-
-
+    @Test
+    public void deleteData() throws IOException {
+        cache.saveData("6", "value6");
+        cache.deleteData("6");
+        try {
+            cache.deleteData("6");
+            fail( "Expected FileNotFoundException" );
+        } catch (FileNotFoundException e) {
+            // expected
+        }
     }
 }

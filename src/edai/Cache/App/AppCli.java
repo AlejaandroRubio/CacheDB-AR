@@ -1,6 +1,7 @@
 package edai.Cache.App;
 
 import edai.Cache.CacheDB;
+import edai.Cache.exceptions.KeyNotFoundException;
 import picocli.CommandLine;
 import picocli.CommandLine.Option;
 import picocli.CommandLine.Command;
@@ -21,6 +22,9 @@ class AppCli implements Runnable{
         @Option(names = {"-g", "--get"}, description = "Get an item from the cache")
         private String getKey;
 
+        @Option(names = {"-d", "--delete"}, description = "Delete an item from the cache")
+        private String deleteKey;
+
         @Override
         public void run() {
             if (key != null && value != null) {
@@ -33,8 +37,17 @@ class AppCli implements Runnable{
                 } else {
                     System.out.println("Item not found in cache");
                 }
-            } else {
-                System.out.println("No operation specified. Use -a to add an item to the cache or -g to get an item from the cache.");
+            } else if (deleteKey != null) {
+
+                try {
+                    cache.remove(deleteKey);
+                    System.out.println("Deleted item from cache");
+                } catch (KeyNotFoundException e) {
+                    System.out.println("Item not found in cache");
+                }
+            }
+            else {
+                System.out.println("No operation specified. Use -a to add an item to the cache, -g to get an item from the cache, or -d to delete an item from the cache.\"");
             }
         }
 

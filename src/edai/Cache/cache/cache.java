@@ -63,6 +63,24 @@ public class cache {
 
     //endregion
 
+    //region DeleteData
+    public static void deleteData(String key) throws FileNotFoundException {
+        String hash=String.format("%o", key.hashCode());
+
+            try{
+                FileReader fileReader = new FileReader(HashPath+hash+".txt");
+                fileReader.close();
+                File file = new File(HashPath+hash+".txt");
+                boolean p=file.delete();
+                System.out.println(p);
+            }
+            catch (IOException e) {
+                throw new FileNotFoundException();
+            }
+
+    }
+    //endregion
+
     //region GetKey
     public static String getKey(String hash) throws KeyNotFoundException, IOException {
 

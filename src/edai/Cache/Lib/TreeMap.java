@@ -3,6 +3,7 @@ package edai.Cache.Lib;
 import edai.Cache.cache.cache;
 import edai.Cache.exceptions.KeyNotFoundException;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TreeMap {
@@ -72,9 +73,10 @@ public class TreeMap {
     //endregion
 
     //region Remove
-    public void remove(String key) {
+    public void remove(String key) throws FileNotFoundException {
         MapEntry entry = new MapEntry(key, null);
         tree.remove(entry);
+        cache.deleteData(key);
     }
 
     //endregion

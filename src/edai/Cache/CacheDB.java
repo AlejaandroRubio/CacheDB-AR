@@ -5,6 +5,8 @@ import edai.Cache.exceptions.DuplicatedKeyException;
 import edai.Cache.exceptions.KeyNotFoundException;
 import edai.Cache.exceptions.*;
 
+import java.io.FileNotFoundException;
+
 
 public class CacheDB implements ICache{
 
@@ -75,13 +77,23 @@ public class CacheDB implements ICache{
     //region Remove
     @Override
     public void remove(String key) throws KeyNotFoundException {
-        if (!exists(key)) {
-            throw new KeyNotFoundException();
-        } else {
-            cache.remove(key);
+       /*if (exists(key)) {
+           try {
+               cache.remove(key);
+           } catch (FileNotFoundException e) {
+               throw new RuntimeException(e);
+           }
+       } else {
+              throw new KeyNotFoundException();
+       }*/
+
+            try {
+                cache.remove(key);
+            } catch (FileNotFoundException e) {
+                throw new RuntimeException(e);
+            }
 
         }
-    }
     //endregion
 
     @Override

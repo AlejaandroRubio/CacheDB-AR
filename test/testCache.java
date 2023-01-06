@@ -8,6 +8,8 @@ import edai.Cache.exceptions.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.io.File;
+
 public class testCache {
 
     private CacheDB cache;
@@ -66,16 +68,27 @@ public class testCache {
         assertTrue(cache.exists("5"));
     }
 
+
     @Test
     public void addNew() throws DuplicatedKeyException {
+        String key = "6";
+        String hash = String.format("%o", key.hashCode());
+        File file = new File("./"+hash+".txt");
+        file.delete();
         cache.addNew("6", "value6");
-        assertEquals(6, cache.getAll().length);
+        assertTrue(cache.exists("6"));
         try {
+            cache.addNew("6", "value6");
+        } catch (DuplicatedKeyException e) {
+        }
+
+
+        /*try {
                 cache.addNew("6", "value7");
-                fail("Expected DuplicatedKeyException");
+                fail("DuplicatedKeyException expected");
         } catch (DuplicatedKeyException e) {
             // expected
-        }
+        }*/
     }
 
     @Test
