@@ -20,7 +20,18 @@ public class cache {
     }
 
     //region GetData
-    public static String getData(String key) throws KeyNotFoundException, IOException {
+
+    /**
+     *
+     This method takes a key as an input and returns the corresponding data in a text file, by generating the hash code for the key,
+     concatenating it with ".txt" and looking for it in a specified file path (HashPath).
+     @param key A string input which represents the key to retrieve data from.
+     @throws KeyNotFoundException when the key input is not found in the file specified by HashPath.
+     @throws IOException when there is an input/output error while reading the file.
+     @return String the corresponding data if found, or null if not found.
+     */
+
+    public String getData(String key) throws KeyNotFoundException, IOException {
         String hash=String.format("%o", key.hashCode());
 
 
@@ -43,7 +54,18 @@ public class cache {
     //endregion
 
     //region SaveData
-    public static void saveData(String key, String value) throws IOException {
+
+    /**
+     *
+     This method takes a key and value as inputs and saves them in a text file, by generating the hash code for the key,
+     concatenating it with ".txt" and saving the value in the file.
+     It also saves the key in a master key file if it does not already exist.
+     @param key A string input which represents the key to save data with.
+     @param value A string input which represents the data to be saved.
+     @throws IOException when there is an input/output error while writing to the file.
+     */
+
+    public void saveData(String key, String value) throws IOException {
         String hash=String.format("%o", key.hashCode());
 
         FileWriter fileWriter = new FileWriter(HashPath+hash+".txt");
@@ -64,7 +86,16 @@ public class cache {
     //endregion
 
     //region DeleteData
-    public static void deleteData(String key) throws FileNotFoundException {
+
+    /**
+     *
+     This method takes a key as an input and deletes the corresponding data in a text file, by generating the hash code for the key,
+     concatenating it with ".txt" and looking for it in a specified file path (HashPath) and deletes the file if it is found.
+     @param key A string input which represents the key to delete data with.
+     @throws FileNotFoundException when the key input is not found in the file specified by HashPath.
+     */
+
+    public void deleteData(String key) throws FileNotFoundException {
         String hash=String.format("%o", key.hashCode());
 
             try{
@@ -82,7 +113,17 @@ public class cache {
     //endregion
 
     //region GetKey
-    public static String getKey(String hash) throws KeyNotFoundException, IOException {
+
+    /**
+     *
+     This method takes a hash as an input and returns the corresponding key in a master key file, by looking for the hash in the file specified by MasterKeyPath
+     @param hash A string input which represents the hash code to retrieve key from.
+     @throws KeyNotFoundException when the hash input is not found in the master key file specified by MasterKeyPath.
+     @throws IOException when there is an input/output error while reading the master key file.
+     @return String the corresponding key if found, or null if not found.
+     */
+
+    public String getKey(String hash) throws KeyNotFoundException, IOException {
 
                 FileReader fileReader = new FileReader(MasterKeyPath);
                 String linea="";
@@ -100,7 +141,16 @@ public class cache {
     //endregion
 
     //region Exists & ExistsInMasterKey
-    public static boolean existsKey(String key) throws IOException {
+
+    /**
+     *
+     This method takes a key as an input and checks if it already exists in the master key file by looking for the key in the file specified by MasterKeyPath
+     @param key A string input which represents the key to check existance of
+     @throws IOException when there is an input/output error while reading the master key file.
+     @return boolean true if key is found in the master key file, false otherwise.
+     */
+
+    public boolean existsKey(String key) throws IOException {
         try{
             FileReader fileReader = new FileReader(MasterKeyPath);
             String linea="";
@@ -120,7 +170,15 @@ public class cache {
 
 
 
-    public static boolean exists(String hashCode) throws KeyNotFoundException{
+    /**
+    *
+    This method takes a hash code as an input and checks if the corresponding data file already exists in a specified path (HashPath) by opening the file.
+    @param hashCode A string input which represents the hash code to check existance of
+    @throws KeyNotFoundException when the file is not found in the HashPath
+    @return boolean true if file is found in the HashPath, false otherwise.
+    */
+
+    public boolean exists(String hashCode) throws KeyNotFoundException{
 
         try {
             FileReader fileReader = new FileReader(HashPath+".txt");

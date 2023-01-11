@@ -27,6 +27,9 @@ class AppCli implements Runnable{
 
         @Override
         public void run() {
+            System.out.println("X-----------------------------------------------------------------------------------------------------------X");
+            System.out.println("Use -a to add an item to the cache, -g to get an item from the cache, or -d to delete an item from the cache.");
+            System.out.println("X-----------------------------------------------------------------------------------------------------------X");
             if (key != null && value != null) {
                 cache.put(key, value);
                 System.out.println("Added item to cache");

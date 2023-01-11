@@ -7,6 +7,9 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class TreeMap {
+
+    cache cache= new cache();
+
     private final BinaryTree<MapEntry> tree = new BinaryTree<>();
 
     public int size(){

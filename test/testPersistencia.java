@@ -14,6 +14,7 @@ import java.io.IOException;
 public class testPersistencia {
 
 
+    cache cache= new cache();
 
    @Test
 
